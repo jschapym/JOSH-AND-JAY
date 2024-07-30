@@ -1,0 +1,262 @@
+[gd_scene load_steps=31 format=3 uid="uid://bpqucagj1ft53"]
+
+[ext_resource type="TileSet" uid="uid://b37dm7eekdlc1" path="res://Tileset.tres" id="1_7quo2"]
+[ext_resource type="Script" path="res://scripts/Portal 1.gd" id="2_5ogdd"]
+[ext_resource type="Texture2D" uid="uid://eqd4mau7khi0" path="res://assets/portalbaseANIMATE.png" id="3_63nur"]
+[ext_resource type="Script" path="res://scripts/Portal 2.gd" id="4_adqqg"]
+[ext_resource type="PackedScene" uid="uid://de3ccla15ytt8" path="res://scenes/portal_teleport.tscn" id="4_lueen"]
+[ext_resource type="Script" path="res://scripts/Portal 3.gd" id="5_6sivp"]
+[ext_resource type="Script" path="res://scripts/Portal 4.gd" id="6_liuu1"]
+[ext_resource type="PackedScene" uid="uid://cmxe1eeb7vcuu" path="res://scenes/main_character.tscn" id="7_qu0lw"]
+[ext_resource type="Texture2D" uid="uid://dimi4pnalwbp5" path="res://assets/greyairsigil.png" id="9_d6by3"]
+[ext_resource type="Texture2D" uid="uid://bkofk1e3llr8s" path="res://assets/airsigil.png" id="9_xa7ka"]
+[ext_resource type="Texture2D" uid="uid://cti8ru4gxpkxo" path="res://assets/firesigil.png" id="10_76gl7"]
+[ext_resource type="Texture2D" uid="uid://bjjgdlec3432c" path="res://assets/earthsigil.png" id="11_5kvmn"]
+[ext_resource type="Texture2D" uid="uid://bl3xbv2c2644l" path="res://assets/greyfiresigil.png" id="11_rkvce"]
+[ext_resource type="Texture2D" uid="uid://cxx1nqyhkvnnt" path="res://assets/watersigil.png" id="12_okcd1"]
+[ext_resource type="Texture2D" uid="uid://djxac1upsv4hr" path="res://assets/greyearthsigil.png" id="13_4p4fd"]
+[ext_resource type="Texture2D" uid="uid://ctaw7coyuh24p" path="res://assets/greywatersigil.png" id="15_v4soh"]
+[ext_resource type="Texture2D" uid="uid://bout6vn1fq8b8" path="res://assets/PLAYERLIGHTTT.webp" id="17_iggta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adbld"]
+atlas = ExtResource("3_63nur")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iel6"]
+atlas = ExtResource("3_63nur")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0vob"]
+atlas = ExtResource("3_63nur")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xw4h"]
+atlas = ExtResource("3_63nur")
+region = Rect2(640, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1vcg"]
+atlas = ExtResource("3_63nur")
+region = Rect2(0, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34mo7"]
+atlas = ExtResource("3_63nur")
+region = Rect2(640, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot3ht"]
+atlas = ExtResource("3_63nur")
+region = Rect2(0, 1920, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrf0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adbld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iel6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0vob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xw4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1vcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34mo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot3ht")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5inxi"]
+radius = 32.0
+height = 146.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g8ogt"]
+polygon = PackedVector2Array(436, -43, 437, 40, 503, 40, 504, -43, 496, -45, 444, -45)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h5una"]
+radius = 32.0
+height = 138.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nftdm"]
+radius = 34.0
+height = 126.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87fxt"]
+radius = 36.0
+height = 122.0
+
+[node name="MainRoomScene" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.409595, 0.380819, 0.428843, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = ExtResource("1_7quo2")
+collision_animatable = true
+format = 2
+layer_0/tile_data = PackedInt32Array(65531, 65537, 2, 65532, 65537, 2, 65533, 65537, 2, 65534, 65537, 2, 65535, 65537, 2, 0, 65537, 2, 1, 65537, 2, 2, 65537, 2, 3, 65537, 2, 4, 65537, 2, 5, 65537, 2, 65530, 65537, 2, 6, 65537, 2, 65529, 65537, 2, -7, 65537, 1, -65543, 65537, 1, -6, 65537, 1, -5, 65537, 1, -4, 65537, 1, -3, 65537, 1, -2, 65537, 1, -1, 65537, 1, -65536, 65537, 1, -65535, 65537, 1, -65534, 65537, 1, -65533, 65537, 1, -65532, 65537, 1, -65531, 65537, 1, -65530, 65537, 1, -65542, 65537, 1, -65541, 65537, 1, -65540, 65537, 1, -65539, 65537, 1, -65538, 65537, 1, -65537, 65537, 1, -131072, 65537, 1, -131071, 65537, 1, -131070, 65537, 1, -131069, 65537, 1, -131068, 65537, 1, -131067, 65537, 1, -131066, 65537, 1, -196603, 65537, 0, -196602, 65537, 0, 7, 65537, 2, 8, 65537, 2, 9, 65537, 2, 10, 65537, 2, 11, 65537, 2, 12, 65537, 2, 13, 65537, 2, 14, 65537, 2, 15, 131073, 2, 16, 262145, 3, -196592, 262145, 3, -131056, 262145, 3, -65520, 262145, 3, -196601, 65537, 0, -196600, 65537, 0, -196599, 65537, 0, -196598, 65537, 0, -196597, 65537, 0, -196596, 65537, 0, -196595, 65537, 0, -196594, 65537, 0, -196593, 131073, 0, -131057, 131073, 1, -65521, 131073, 1, -65522, 65537, 1, -65523, 65537, 1, -65524, 65537, 1, -65525, 65537, 1, -65526, 65537, 1, -65527, 65537, 1, -65528, 65537, 1, -65529, 65537, 1, -131065, 65537, 1, -131064, 65537, 1, -131063, 65537, 1, -131062, 65537, 1, -131061, 65537, 1, -131060, 65537, 1, -131059, 65537, 1, -131058, 65537, 1, -65519, 262145, 3, -65518, 262145, 3, -65517, 262145, 3, -65516, 262145, 3, -65515, 262145, 3, -65514, 262145, 3, -65513, 262145, 3, -65512, 262145, 3, -65511, 262145, 3, -131055, 262145, 3, -131054, 262145, 3, -131053, 262145, 3, -131052, 262145, 3, -131051, 262145, 3, -131050, 262145, 3, -131049, 262145, 3, -131048, 262145, 3, -131047, 262145, 3, -196591, 262145, 3, -196590, 262145, 3, -196589, 262145, 3, -196588, 262145, 3, -196587, 262145, 3, -196586, 262145, 3, -196585, 262145, 3, -196584, 262145, 3, -196583, 262145, 3, 17, 262145, 3, 18, 262145, 3, 19, 262145, 3, 20, 262145, 3, 21, 262145, 3, 22, 262145, 3, 23, 262145, 3, 24, 262145, 3, 25, 262145, 3, 26, 262145, 3, -196582, 262145, 3, -131046, 262145, 3, -65510, 262145, 3, -262139, 262145, 3, -262138, 262145, 3, -262137, 262145, 3, -262136, 262145, 3, -262135, 262145, 3, -262134, 262145, 3, -262133, 262145, 3, -262132, 262145, 3, -262131, 262145, 3, -262130, 262145, 3, -262129, 262145, 3, -262128, 262145, 3, -262127, 262145, 3, -262126, 262145, 3, -262125, 262145, 3, -262124, 262145, 3, -262123, 262145, 3, -262122, 262145, 3, -262121, 262145, 3, -262120, 262145, 3, -262119, 262145, 3, -262118, 262145, 3, -196615, 262145, 3, -131079, 65537, 0, -196614, 262145, 3, -131078, 65537, 0, -196613, 262145, 3, -131077, 65537, 0, -196612, 262145, 3, -131076, 65537, 0, -196611, 262145, 3, -131075, 65537, 0, -196610, 262145, 3, -131074, 65537, 0, -196609, 262145, 3, -131073, 65537, 0, -262144, 262145, 3, -196608, 65537, 0, -262143, 262145, 3, -196607, 65537, 0, -262142, 262145, 3, -196606, 65537, 0, -262141, 262145, 3, -196605, 65537, 0, -262140, 262145, 3, -196604, 65537, 0, 65528, 65537, 2, -14, 65537, 1, 65521, 1, 2, 65522, 65537, 2, 65523, 65537, 2, 65524, 65537, 2, 65525, 65537, 2, 65526, 65537, 2, 65527, 65537, 2, 65520, 196609, 3, -65552, 196609, 3, -16, 196609, 3, -131088, 196609, 3, -65551, 1, 1, -65550, 65537, 1, -65549, 65537, 1, -65548, 65537, 1, -65547, 65537, 1, -65546, 65537, 1, -65545, 65537, 1, -65544, 65537, 1, -8, 65537, 1, -9, 65537, 1, -10, 65537, 1, -11, 65537, 1, -12, 65537, 1, -13, 65537, 1, -15, 1, 1, -131087, 1, 0, -131086, 65537, 0, -131085, 65537, 0, -131084, 65537, 0, -131083, 65537, 0, -131082, 65537, 0, -131081, 65537, 0, -131080, 65537, 0)
+
+[node name="Portal 1" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(-743, -9)
+script = ExtResource("2_5ogdd")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Portal 1"]
+position = Vector2(-2, -1)
+scale = Vector2(0.146875, 0.146875)
+sprite_frames = SubResource("SpriteFrames_xrf0n")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal 1"]
+visible = false
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_5inxi")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Portal 1"]
+position = Vector2(-472, 0)
+occluder = SubResource("OccluderPolygon2D_g8ogt")
+
+[node name="PortalTeleport" parent="Portal 1" instance=ExtResource("4_lueen")]
+
+[node name="Portal 2" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(-275, -13)
+script = ExtResource("4_adqqg")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Portal 2"]
+position = Vector2(2, 2)
+scale = Vector2(0.146875, 0.146875)
+sprite_frames = SubResource("SpriteFrames_xrf0n")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal 2"]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_h5una")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Portal 2"]
+position = Vector2(-468, 4)
+occluder = SubResource("OccluderPolygon2D_g8ogt")
+
+[node name="PortalTeleport" parent="Portal 2" instance=ExtResource("4_lueen")]
+
+[node name="Portal 3" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(294, -9)
+script = ExtResource("5_6sivp")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Portal 3"]
+position = Vector2(-3, -2)
+scale = Vector2(0.146875, 0.146875)
+sprite_frames = SubResource("SpriteFrames_xrf0n")
+autoplay = "default"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Portal 3"]
+position = Vector2(-473, 0)
+occluder = SubResource("OccluderPolygon2D_g8ogt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal 3"]
+position = Vector2(-2, -1)
+shape = SubResource("CapsuleShape2D_nftdm")
+
+[node name="PortalTeleport" parent="Portal 3" instance=ExtResource("4_lueen")]
+
+[node name="Portal 4" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(788, -11)
+script = ExtResource("6_liuu1")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Portal 4"]
+position = Vector2(-1, 1)
+scale = Vector2(0.146875, 0.146875)
+sprite_frames = SubResource("SpriteFrames_xrf0n")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal 4"]
+position = Vector2(-2, 5)
+shape = SubResource("CapsuleShape2D_87fxt")
+
+[node name="PortalTeleport" parent="Portal 4" instance=ExtResource("4_lueen")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Portal 4"]
+position = Vector2(-471, 3)
+occluder = SubResource("OccluderPolygon2D_g8ogt")
+
+[node name="AirSigil" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4, -47)
+scale = Vector2(2, 2)
+texture = ExtResource("9_xa7ka")
+
+[node name="AirWaystone" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-273, -77)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_d6by3")
+
+[node name="FireSigil" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -47)
+scale = Vector2(2, 2)
+texture = ExtResource("10_76gl7")
+
+[node name="FireWaystone" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(293, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_rkvce")
+
+[node name="EarthSigil" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -47)
+scale = Vector2(2, 2)
+texture = ExtResource("11_5kvmn")
+
+[node name="EarthWaystone" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-744, -76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_4p4fd")
+
+[node name="WaterSigil" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -47)
+scale = Vector2(2, 2)
+texture = ExtResource("12_okcd1")
+
+[node name="WaterWaystone" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(787, -75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_v4soh")
+
+[node name="MainCharacter" parent="." instance=ExtResource("7_qu0lw")]
+visibility_layer = 3
+z_index = 5
+position = Vector2(1, 9)
+
+[node name="PointLight2D" type="PointLight2D" parent="MainCharacter"]
+energy = 0.7
+shadow_enabled = true
+texture = ExtResource("17_iggta")
+
+[connection signal="body_entered" from="Portal 1" to="Portal 1" method="_on_body_entered"]
+[connection signal="body_exited" from="Portal 1" to="Portal 1" method="_on_body_exited"]
+[connection signal="body_entered" from="Portal 2" to="Portal 2" method="_on_body_entered"]
+[connection signal="body_exited" from="Portal 2" to="Portal 2" method="_on_body_exited"]
+[connection signal="body_entered" from="Portal 3" to="Portal 3" method="_on_body_entered"]
+[connection signal="body_exited" from="Portal 3" to="Portal 3" method="_on_body_exited"]
+[connection signal="body_entered" from="Portal 4" to="Portal 4" method="_on_body_entered"]
+[connection signal="body_exited" from="Portal 4" to="Portal 4" method="_on_body_exited"]

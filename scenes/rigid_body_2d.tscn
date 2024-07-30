@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://p72w8dciip1e"]
+
+[ext_resource type="Texture2D" uid="uid://bobhx56kiippk" path="res://assets/fireball.png" id="2_k6v04"]
+
+[sub_resource type="GDScript" id="GDScript_4o6w5"]
+script/source = "extends RigidBody2D  # Use KinematicBody2D if needed
+
+var speed = 500.0
+
+func _physics_process(delta):
+	linear_velocity = Vector2(speed, 0).rotated(rotation)
+
+func _on_Fireball_body_entered(body):
+	if body.is_in_group(\"enemies\"):
+		queue_free()  # Destroy the fireball
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caab8"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54sxa"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lado"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reyb0"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_172xq"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16h3w"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ccr3"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7cqv"]
+atlas = ExtResource("2_k6v04")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyw77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caab8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54sxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lado")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reyb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_172xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16h3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ccr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7cqv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2ksn"]
+radius = 17.72
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2(-95, -29)
+script = SubResource("GDScript_4o6w5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(0.5625, 0.453125)
+sprite_frames = SubResource("SpriteFrames_eyw77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-902, 13)
+shape = SubResource("CircleShape2D_a2ksn")

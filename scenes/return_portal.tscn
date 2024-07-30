@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c231qntuqyo3i"]
+
+[ext_resource type="Script" path="res://scripts/RoomReturn.gd" id="1_ywsnf"]
+[ext_resource type="Texture2D" uid="uid://b7wqlif6nq6yo" path="res://assets/tilemapBASE.png" id="2_a7krl"]
+[ext_resource type="PackedScene" uid="uid://de3ccla15ytt8" path="res://scenes/portal_teleport.tscn" id="3_1p2f6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7fvy"]
+atlas = ExtResource("2_a7krl")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_esnvv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7fvy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16fpn"]
+radius = 21.0
+height = 66.0
+
+[node name="Return Portal" type="Area2D"]
+texture_filter = 1
+position = Vector2(-993, -30)
+script = ExtResource("1_ywsnf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 1)
+sprite_frames = SubResource("SpriteFrames_esnvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_16fpn")
+
+[node name="PortalTeleport" parent="." instance=ExtResource("3_1p2f6")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
